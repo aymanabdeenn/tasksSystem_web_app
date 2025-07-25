@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tasks report</title>
+  <link rel="stylesheet" href="/styles/styleManager/styleShowTasksReport.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+</head>
+<body>
+<div class="container">
+  <h1 class="title">Tasks Report</h1>
+  <div class="info">
+    <div th:if="${tasks.size() == 0}" class="noTasks text"><p class="text">There are no tasks to show.</p></div>
+    <div th:if="${tasks.size() != 0}" th:each="task : ${tasks}" class="task">
+      <div class="choice">
+        <div class="ele odd">
+          <p class="text">Title: </p>
+          <p th:text="${task.title}" class="text"></p>
+        </div>
+        <div class="ele even">
+          <p class="text">Description: </p>
+          <p th:text="${task.description}" class="text"></p>
+        </div>
+
+        <div th:if="${task.remainingPeriod() == 2}" class="ele odd">
+          <p class="text">Due Date: </p>
+          <p th:text="${task.dueDate}" class="text"></p>
+        </div>
+
+        <div th:if="${task.remainingPeriod() == -1}" class="ele odd">
+          <p class="text">Due Date: </p>
+          <p th:text="${task.dueDate}" class="text"></p>
+          <p style="background-color:#e74c3c; border-radius: 5px; color: #FFFFFF; padding: 10px; font-family: 'Lora'">Overdue!</p>
+        </div>
+
+        <div th:if="${task.remainingPeriod() == 1}" class="ele odd">
+          <p class="text">Due Date: </p>
+          <p th:text="${task.dueDate}" class="text"></p>
+          <p style="background-color:#f1c40f; border-radius: 5px; color: #FFFFFF; padding: 10px; font-family: 'Lora'">Due today!</p>
+        </div>
+        <div class="ele even">
+          <p class="counter text" th:attr="data-due-date=${task.dueDate},data-due-time=${task.dueTime}"></p>
+        </div>
+        <div class="eleBar odd">
+          <div class="bar">
+            <div class="progress" th:style="'width:' + ${task.progress} + '%;'"></div>
+          </div>
+          <p class="text" th:text="${task.progress}"></p>
+          <p class="text">%</p>
+        </div>
+
+      </div>
+      <form class="options" method="POST" th:action="@{/manager/modTask}">
+        <input type="hidden" name="taskId" th:value="${task.id}"/>
+        <input type="hidden" name="type" th:value="${task.type}"/>
+        <input type="hidden" name="assigneeId" th:value="${task.assignedUser.id}"/>
+        <button type="submit" name="action" value="update" id="update" class="btn">
+            <span class="material-symbols-outlined">
+              edit
+            </span>
+        </button>
+        <button type="submit" name="action" value="remove" id="remove" class="btn">
+            <span class="material-symbols-outlined">
+              delete
+            </span>
+        </button>
+      </form>
+    </div>
+
+  </div>
+
+</div>
+<div class="bottomBar">
+  <div class="image">
+    <img src="/images/logoOffWhite.png"/>
+  </div>
+</div>
+<script src="/scripts/scriptCounterReport.js"></script>
+</body>
+</html>

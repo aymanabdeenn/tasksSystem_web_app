@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Team creation</title>
+  <link rel="stylesheet" href="/styles/styleManager/styleCreateNewTeam.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+</head>
+<body>
+<div class="container">
+  <h1 class="title">Fill the information for the new team</h1>
+  <form class="info" method="POST" th:action="@{/manager/createNewTeam}">
+    <label class="text"
+    >Team Name:
+      <input th:if="${error == null}" type="text" name="teamName" class="infoInput" />
+      <input th:if="${error != null}" type="text" name="teamName" class="errorInput" th:value="${error}"/>
+    </label>
+    <button class="btn text" type="submit">Create Team</button>
+  </form>
+</div>
+<div class="bottomBar">
+  <div class="image">
+    <img src="/images/logoOffWhite.png"/>
+  </div>
+</div>
+</body>
+</html>

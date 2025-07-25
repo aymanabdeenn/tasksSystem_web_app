@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Work tasks</title>
+    <link rel="stylesheet" href="/styles/styleUser/styleWorkTasks.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=edit" />
+</head>
+<body>
+<div class="container">
+    <h1 class="title">My work tasks</h1>
+    <div class="info">
+        <div th:if="${tasks.size() == 0}" class="noTasks"><p class="text">No work tasks yet.</p></div>
+        <div th:if="${tasks.size() != 0}" th:each="task : ${tasks}" class="task">
+            <div class="choice">
+                <div class="ele odd">
+                    <p class="text">Title: </p>
+                    <p th:text="${task.title}" class="text"></p>
+                </div>
+                <div class="ele even">
+                    <p class="text">Description: </p>
+                    <p th:text="${task.description}" class="text"></p>
+                </div>
+
+                <div th:if="${task.remainingPeriod() == 2}" class="ele odd">
+                    <p class="text">Due Date: </p>
+                    <p th:text="${task.dueDate}" class="text"></p>
+                </div>
+
+                <div th:if="${task.remainingPeriod() == -1}" class="ele odd">
+                    <p class="text">Due Date: </p>
+                    <p th:text="${task.dueDate}" class="text"></p>
+                    <p style="background-color:#e74c3c; border-radius: 5px; color: #FFFFFF; padding: 10px; font-family: 'Lora'">Overdue!</p>
+                </div>
+
+                <div th:if="${task.remainingPeriod() == 1}" class="ele odd">
+                    <p class="text">Due Date: </p>
+                    <p th:text="${task.dueDate}" class="text"></p>
+                    <p style="background-color:#f1c40f; border-radius: 5px; color: #FFFFFF; padding: 10px; font-family: 'Lora'">Due today!</p>
+                </div>
+                <div class="ele even">
+                    <p class="counter text" th:attr="data-due-date=${task.dueDate},data-due-time=${task.dueTime}"></p>
+                </div>
+                <div class="eleBar odd">
+                    <div class="bar">
+                        <div class="progress" th:style="'width:' + ${task.progress} + '%;'"></div>
+                    </div>
+                    <p class="text" th:text="${task.progress}"></p>
+                    <p class="text">%</p>
+                </div>
+
+            </div>
+            <form class="options" method="POST" th:action="@{/user/modTask}">
+                <input type="hidden" name="taskId" th:value="${task.id}"/>
+                <button type="submit" name="action" value="update" id="update" class="btn">
+                    <span class="material-symbols-outlined">
+                        edit
+                    </span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+</div>
+<div class="bottomBar">
+    <div class="image">
+        <img src="/images/logoOffWhite.png"/>
+    </div>
+</div>
+<script src="/scripts/scriptCounterWork.js"></script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>userGUI</title>
+    <link rel="stylesheet" href="/styles/styleUser/styleUserGUI.css" />
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=logout"
+    />
+</head>
+<body>
+<div class="topBar">
+    <div class="image">
+        <img src="/images/logoOffWhite.png"/>
+    </div>
+
+    <form class="logout" method="POST" th:action="@{/shared/logout}">
+        <button class="logoutBtn" type="submit">
+            <span class="material-symbols-outlined"> logout </span>
+        </button>
+    </form>
+</div>
+<div class="container">
+    <div class="title">
+        <p class="titleEle">Hello there, </p>
+        <p class="titleEle" th:text="${user.name}"></p>
+        <p class="titleEle">:)</p>
+    </div>
+    <div class="choices" >
+        <a class="btn" th:href="@{/user/createTask}">
+            Create a personal task
+        </a>
+        <a class="btn" th:href="@{/user/tasksSelection}">
+            Show tasks
+        </a>
+    </div>
+
+</div>
+
+<div class="bottomBar"></div>
+</body>
+</html>

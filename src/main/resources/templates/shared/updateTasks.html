@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Update task</title>
+  <link rel="stylesheet" href="/styles/styleShared/styleUpdateTasks.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+</head>
+<body>
+
+<div class="container">
+
+  <div class="taskCard">
+    <p class="card-title">Task's info</p>
+    <div class="info">
+      <div class="ele">
+        <p class="text">Title:</p>
+        <p class="text" th:text="${task.title}"></p>
+      </div>
+      <div class="text ele">
+        <p class="text">Description:</p>
+        <p class="text" th:text="${task.description}"></p>
+      </div>
+      <div class="ele">
+        <p>Due Date:</p>
+        <p class="text" th:text="${task.dueDate}"></p>
+        <p class="text" th:if="${task.remainingPeriod() == -1}" style="background-color:#e74c3c; border-radius: 5px; color: #FFFFFF; padding: 10px;">Overdue!</p>
+        <p class="text" th:if="${task.remainingPeriod() == 1}" style="background-color:#f1c40f; border-radius: 5px; color: #FFFFFF; padding: 10px;">Due Today!</p>
+      </div>
+      <div class="ele">
+        <p class="text">Progress:</p>
+        <p class="text" th:text="${task.progress}"></p>
+        <p class="text">%</p>
+      </div>
+
+    </div>
+  </div>
+  <div class="newInfo">
+    <form th:if="${taskType == 'personal' || role == 'manager'}" method="POST"  th:action="@{${role == 'manager'} ? '/manager/updateTask' : '/user/updateTask'}" class="titleForm">
+        <label class="text">New Title:</label>
+        <input type="text" name="newData" class="inputInfo"/>
+        <input type="hidden" name="taskId" th:value="${task.id}"/>
+        <input type="hidden" name="assigneeId" th:value="${task.assignedUser.id}"/>
+        <button type="submit" name="action" value="changeTitle">Change</button>
+    </form>
+    <form th:if="${taskType == 'personal' || role == 'manager'}" method="POST" th:action="@{${role == 'manager'} ? '/manager/updateTask' : '/user/updateTask'}" class="descriptionForm">
+      <label class="text">New Description:</label>
+      <input type="text" name="newData" class="inputInfo"/>
+      <input type="hidden" name="taskId" th:value="${task.id}"/>
+      <input type="hidden" name="assigneeId" th:value="${task.assignedUser.id}"/>
+      <button type="submit" name="action" value="changeDescription">Change</button>
+    </form>
+    <form th:if="${taskType == 'personal' || role == 'manager'}" method="POST" th:action="@{${role == 'manager'} ? '/manager/updateTask' : '/user/updateTask'}" class="dueDateForm">
+      <label class="text">New Due Date:</label>
+      <input type="date" name="newData" class="inputInfo"/>
+      <input type="hidden" name="taskId" th:value="${task.id}"/>
+      <input type="hidden" name="assigneeId" th:value="${task.assignedUser.id}"/>
+      <button type="submit" name="action" value="changeDueDate">Change</button>
+    </form>
+    <form th:if="${taskType == 'personal' || role == 'manager'}" method="POST" th:action="@{${role == 'manager'} ? '/manager/updateTask' : '/user/updateTask'}" class="dueTimeForm">
+      <label class="text">New Due Time:</label>
+      <input type="time" name="newData" class="inputInfo"/>
+      <input type="hidden" name="taskId" th:value="${task.id}"/>
+      <input type="hidden" name="assigneeId" th:value="${task.assignedUser.id}"/>
+      <button type="submit" name="action" value="changeDueTime">Change</button>
+    </form>
+    <form method="POST" th:action="@{${role == 'manager'} ? '/manager/updateTask' : '/user/updateTask'}" class="progressForm">
+      <label class="text">New Progress:</label>
+      <input th:if="${error == null}" type="text" name="newData" class="inputInfo"/>
+      <input th:if="${error != null}" type="text" name="newData" class="errorInput" th:value="${error}"/>
+      <input type="hidden" name="taskId" th:value="${task.id}"/>
+      <input type="hidden" name="assigneeId" th:value="${task.assignedUser.id}"/>
+      <button type="submit" name="action" value="changeProgress">Change</button>
+    </form>
+  </div>
+</div>
+<div class="bottomBar">
+  <div class="image">
+    <img src="/images/logoOffWhite.png"/>
+  </div>
+</div>
+</body>
+</html>

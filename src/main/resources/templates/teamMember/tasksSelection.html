@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tasks selection</title>
+  <link rel="stylesheet" href="/styles/styleTeamMember/styleTasksSelection.css" />
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=logout"
+    />
+</head>
+<body>
+      <div class="choices" >
+        <h1 class="title">Personal or Work?</h1>
+        <form class="choices" method="GET" th:action="@{/user/showTasks}">
+          <button class="btn" type="submit" name="action" value="personal">Personal tasks</button>
+          <button class="btn" type="submit" name="action" value="job">Work tasks</button>
+        </form>
+      </div>
+<div class="bottomBar">
+    <div class="image">
+        <img src="/images/logoOffWhite.png"/>
+    </div>
+</div>
+</body>
+</html>

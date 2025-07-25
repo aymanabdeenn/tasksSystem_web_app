@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Task creation</title>
+  <link rel="stylesheet" href="/styles/styleShared/stylecreateATask.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+</head>
+<body>
+<div class="container">
+  <h1 class="title">Fill the information for the new task</h1>
+  <form class="info" method="POST" th:action="@{/shared/createNewTask}">
+    <label class="text"
+    >Task Name:
+      <input type="text" name="taskName" class="infoInput" />
+    </label>
+    <label class="text"
+    >Task Description:
+      <input type="text" name="taskDescription" class="infoInput" />
+    </label>
+    <label class="text"
+    >Task Due Date:
+      <input type="date" name="taskDueDate" class="infoInput" />
+    </label>
+    <label class="text"
+    >Task Due Time:
+      <input type="time" name="taskDueTime" class="infoInput" />
+    </label>
+    <label th:if="${type == 'job'}" class="text"
+    >Choose a user to assign the task to:
+      <select name="userId" class="infoInput">
+        <option th:each="user : ${users}"  th:text="${user.name}" th:value="${user.id}"></option>
+      </select>
+    </label>
+    <input type="hidden" name="type" th:value="${type}"/>
+    <button class="btn" type="submit">Create Task</button>
+  </form>
+</div>
+<div class="bottomBar">
+  <div class="image">
+    <img src="/images/logoOffWhite.png"/>
+  </div>
+</div>
+</body>
+</html>

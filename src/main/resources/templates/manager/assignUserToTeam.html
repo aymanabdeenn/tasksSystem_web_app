@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>userGUI</title>
+  <link rel="stylesheet" href="/styles/styleManager/styleAssignUserToTeam.css" />
+  <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=logout"
+  />
+</head>
+<body>
+<div class="container">
+
+    <form class="info" method="POST" th:action="@{/manager/assignUserToTeam}">
+      <label>
+        <p class="text">Available teams:</p>
+        <select class="infoInput" name="teamId">
+          <option th:each="team : ${teams}" th:value="${team.id}" th:text="${team.name}"></option>
+        </select>
+      </label>
+      <label>
+        <p class="text">Available users:</p>
+        <select class="infoInput" name="userId">
+          <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.name}"></option>
+        </select>
+      </label>
+      <button class="btn" type="submit">Assign User</button>
+    </form>
+</div>
+<div class="bottomBar">
+  <div class="image">
+    <img src="/images/logoOffWhite.png"/>
+  </div>
+</div>
+</body>
+</html>

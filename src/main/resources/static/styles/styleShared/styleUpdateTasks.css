@@ -1,0 +1,166 @@
+:root {
+  --main-color: #212423;
+  --secondary-color: #FFF5EE;
+  --tertiary-color: #ecf0f1;
+  --forth-color: #ec7063;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: var(--secondary-color);
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+.bottomBar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 10%;
+    background-color: var(--main-color);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  img{
+      width: 75px;
+      height: 75px;
+  }
+
+  .image{
+      border-radius: 10px;
+      width: 100px;
+      height: 100x;
+      background-color:  #212423;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    width: 100%;
+    height: 90%;
+}
+
+.taskCard{
+    width: 25%;
+    height: 50%;
+    background-color: var(--tertiary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 6px outset var(--main-color);
+    border-radius: 10px;
+}
+
+.info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.card-title{
+    width: 100%;
+    color: var(--main-color);
+    font-size: 1.5rem;
+    font-style: italic;
+    font-weight: bold;
+    border: 2px solid var(--main-color);
+    border-radius: 50%;
+    padding: 10px;
+    text-align: center;
+    font-family: "Lora";
+}
+
+.ele{
+    border-bottom: 2px dashed var(--main-color);
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 15px;
+}
+
+.ele:last-child{
+    border-bottom: none;
+}
+
+.newInfo{
+    width: 50%;
+    height: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 50px;
+    background-color: var(--tertiary-color);
+    border: 6px inset var(--main-color);
+    border-radius: 10px;
+}
+
+.text {
+  font-size: 1.2rem;
+  color: var(--main-color);
+  font-family: "Lora";
+}
+
+form{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 25px;
+}
+
+.inputInfo{
+    border-radius: 10px;
+    border: 2px dashed var(--main-color);
+    width: 250px;
+    height: 50px;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--main-color);
+    font-family: "Lora";
+}
+
+button{
+    background-color: var(--main-color);
+    color: var(--tertiary-color);
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1.2em;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+}
+
+button:hover{
+    background-color: var(--tertiary-color);
+    color: var(--main-color);
+}
+
+.errorInput{
+    border: 2px dashed #FF0000;
+    border-radius: 10px;
+    width: 250px;
+    height: 50px;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: #FF0000;
+    font-family: "Lora";
+}

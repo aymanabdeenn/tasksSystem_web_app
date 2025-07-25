@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Teams</title>
+  <link rel="stylesheet" href="/styles/styleManager/styleShowTeams.css" />
+  <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=logout"
+  />
+</head>
+<body>
+
+<div class="container">
+
+  <div class="teamChoice">
+    <form method="GET" th:action="@{/manager/viewTeams}">
+        <label>
+          <p class="text">Choose a team:</p>
+          <select class="inputInfo" name="teamId">
+            <option th:each="team : ${teams}" th:text="${team.name}" th:value="${team.id}"></option>
+          </select>
+        </label>
+      <button class="btn" type="submit" name="action" value="show">Show Users</button>
+    </form>
+  </div>
+  <div class="teamUsers">
+    <p class="text" th:if="${users == null}">Choose a team to show its members.</p>
+    <div class="users" th:if="${users != null}">
+      <p class="text" th:if="${users.size() == 0}">There are no users in this team.</p>
+      <table th:if="${users.size() != 0}">
+        <thead>
+          <tr>
+            <th class="text">#</th>
+            <th class="text tableTitle">Name</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr th:each="user : ${users}">
+              <td></td>
+              <td class="text" th:text="${user.name}"></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="bottomBar">
+  <div class="image">
+    <img src="/images/logoOffWhite.png"/>
+  </div>
+</div>
+</body>
+</html>

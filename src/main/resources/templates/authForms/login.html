@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login</title>
+  <link rel="stylesheet" href="/styles/styleAuthForms/styleLogin.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=edit" />
+</head>
+<body>
+<div class="logo">
+  <img src="/images/logoOffWhite.png"/>
+</div>
+<form class="loginForm" method="POST" th:action="@{/shared/login}">
+  <h1 class="title">Login</h1>
+  <label>
+      <p class="text">Username:</p>
+      <input class="inputInfo" type="text" name="username"/>
+  </label>
+  <label>
+    <p class="text">Password:</p>
+    <input class="inputInfo" type="password" name="password"/>
+  </label>
+    <p class="sub-text" th:if="${error != null}" th:text="${error}"></p>
+
+    <button class="btn" type="submit">Login</button>
+  <p class="text">Don't have an account? <a th:href="@{/shared/signUpUI}">Sign Up here!</a></p>
+</form>
+</body>
+</html>
